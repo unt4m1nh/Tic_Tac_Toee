@@ -31,6 +31,14 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="Config.h" />
+		<Unit filename="Engine.cpp" />
+		<Unit filename="Engine.h" />
+		<Unit filename="Interface.cpp" />
+		<Unit filename="Interface.h" />
+		<Unit filename="LTexrure.cpp" />
+		<Unit filename="LTexture.h" />
+		<Unit filename="Player1.h" />
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<lib_finder disable_auto="1" />

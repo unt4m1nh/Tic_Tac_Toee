@@ -58,11 +58,24 @@ bool Engine::initWindowAndRender() {
 	return success;
 }
 
+bool Engine::initInterface(SDL_Renderer* &gRenderer)
+{
+    this->interface = new Interface(gRenderer);
+
+    return true;
+}
+
 bool Engine::initGame()
 {
     this->initWindowAndRender();
+    this->initInterface(gRenderer);
 
     return true;
+}
+
+void Engine::two_player()
+{
+
 }
 
 bool Engine::run()
@@ -80,7 +93,14 @@ bool Engine::run()
                 quit = true;
             }
         }
+        this->interface->renderChessBoard(this->gRenderer);
+
+        SDL_RenderPresent(gRenderer);
+
     }
+    this->close();
+
+    return true;
 }
 
 void Engine::close()

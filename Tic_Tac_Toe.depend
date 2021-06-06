@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1622878250 source:d:\caro chess\tic_tac_toe\main.cpp
+1622904767 source:d:\caro chess\tic_tac_toe\main.cpp
 	<iostream>
 	<SDL.h>
 	"Engine.h"
@@ -13,15 +13,31 @@
 	<SDL_image.h>
 	<string>
 
-1622875406 d:\caro chess\tic_tac_toe\config.h
+1622996327 d:\caro chess\tic_tac_toe\config.h
 
-1622877565 source:d:\caro chess\tic_tac_toe\engine.cpp
+1622996587 source:d:\caro chess\tic_tac_toe\engine.cpp
 	"Engine.h"
 	"Config.h"
 	<iostream>
 
-1622877565 d:\caro chess\tic_tac_toe\engine.h
+1622996242 d:\caro chess\tic_tac_toe\engine.h
 	<SDL.h>
 	<SDL_image.h>
 	<iostream>
+	<string>
+	"LTexture.h"
+	"Interface.h"
+
+1622996162 d:\caro chess\tic_tac_toe\interface.h
+	<SDL.h>
+	<SDL_image.h>
+	<string>
+	"LTexture.h"
+
+1622996177 source:d:\caro chess\tic_tac_toe\interface.cpp
+	"Interface.h"
+	"Config.h"
+	<SDL.h>
+	<SDL_image.h>
+	<string>
 
