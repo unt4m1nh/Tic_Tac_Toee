@@ -2,6 +2,7 @@
 #define PLAYER1_H
 
 #include"Config.h"
+#include"Interface.h"
 
 #include<SDL.h>
 #include<iostream>

@@ -15,17 +15,20 @@ class Engine{
 
     public:
 
-        // game logic function
+        // game logic functions
         void close();
         bool run();
         void two_player();
         void vs_computer();
         void check_winner();
 
-        // init function
+        // init functions
         bool initWindowAndRender();
         bool initGame();
         bool initInterface(SDL_Renderer* &gRenderer);
+
+        //input functions
+        void player1_input(SDL_Event& e);
 
     private:
         SDL_Window* gWindow;

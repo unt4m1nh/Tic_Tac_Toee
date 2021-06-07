@@ -73,10 +73,47 @@ bool Engine::initGame()
     return true;
 }
 
+void Engine::player1_input(SDL_Event& e)
+{
+    bool inside_box[3][3] = {{true,true,true},
+                             {true,true,true},
+                             {true,true,true}};
+
+    while( SDL_PollEvent( &e ) != 0 )
+    {
+        if( e.type == SDL_MOUSEMOTION || e.type == SDL_MOUSEBUTTONDOWN || e.type == SDL_MOUSEBUTTONUP )
+        {
+            //Get mouse position
+            int x, y;
+            SDL_GetMouseState( &x, &y );
+            for(int i = 0; i < 3; i++)
+            {
+                for(int j = 0; j < 3; j++)
+                {
+                    if(x < i || x > CHESS_BOX_WIDTH*(i+1) || y < j || y > CHESS_BOX_HEIGHT*(j+1))
+                    {
+                        inside_box[i][j] = false;
+                    }
+                    if(inside_box[i][j] && this->interface->game_board[i][j] == 0)
+                    {
+                        if (e.type == SDL_MOUSEBUTTONDOWN )
+                        {
+                           this->interface->game_board[i][j] = 1;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
 void Engine::two_player()
 {
 
 }
+
+
 
 bool Engine::run()
 {
@@ -92,6 +129,7 @@ bool Engine::run()
             {
                 quit = true;
             }
+            this->player1_input(e);
         }
         this->interface->renderChessBoard(this->gRenderer);
 
