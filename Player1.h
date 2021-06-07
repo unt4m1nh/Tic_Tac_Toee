@@ -9,7 +9,7 @@
 class Player1 {
     public:
 
-        void input(SDL_Event& e)
+        void input(SDL_Event& e);
         char chess;
 
     private:

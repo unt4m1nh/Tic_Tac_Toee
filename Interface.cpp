@@ -14,17 +14,26 @@ Interface::Interface(SDL_Renderer* &gRenderer)
 
 Interface::~Interface()
 {
-    this->EmtyChessBoxTexture.free();
+    for(int i = 0; i < 3; i++)
+    {
+        this->ChessBoxTexture[i].free();
+    }
 }
 
 bool Interface::loadMedia(SDL_Renderer* &gRenderer)
 {
     //Loading success flag
     bool success = true;
-    this->EmtyChessBoxTexture.loadFromFile(this->EmtyChessBoxTexturePath, gRenderer);
-    if (this->EmtyChessBoxTexture.get_mTexture() == NULL) {
-            success = false;
-            printf( "Failed to load playgorund texture image %d!\n" );
+    for(int i = 0; i < 3; i++)
+    {
+        this->ChessBoxTexture[i].loadFromFile(this->ChessBoxTexturePath[i], gRenderer);
+    }
+    for(int i = 0; i < 3; i++)
+    {
+        if (this->ChessBoxTexture[i].get_mTexture() == NULL) {
+                success = false;
+                printf( "Failed to load playgorund texture image %d!\n" );
+        }
     }
     return success;
 }
@@ -32,11 +41,12 @@ bool Interface::loadMedia(SDL_Renderer* &gRenderer)
 void Interface::renderChessBoard(SDL_Renderer* &gRenderer)
 {
 
-    for(int i = 0; i <= 400; i+= 200)
+    for(int i = 0; i < 3; i++)
     {
-        for(int j = 0; j <= 400; j += 200)
+        for(int j = 0; j < 3; j++)
         {
-              this->EmtyChessBoxTexture.render(gRenderer,i,j);
+              int states = game_board[i][j];
+              this->ChessBoxTexture[states].render(gRenderer,i*200,j*200);
         }
     }
     SDL_RenderPresent(gRenderer);
