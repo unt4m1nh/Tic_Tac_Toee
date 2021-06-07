@@ -32,7 +32,7 @@ bool Interface::loadMedia(SDL_Renderer* &gRenderer)
 void Interface::renderChessBoard(SDL_Renderer* &gRenderer)
 {
 
-    for(int i = 0; i <= 400; i+= 200)
+    for(int i = 100; i <= 500; i+= 200)
     {
         for(int j = 0; j <= 400; j += 200)
         {
