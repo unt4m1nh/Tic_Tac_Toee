@@ -30,6 +30,7 @@ class Engine{
 
         //input functions
         void player_input(SDL_Event& e);
+        bool is_clicked();
 
         int state = 0;
 
