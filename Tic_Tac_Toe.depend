@@ -15,26 +15,27 @@
 
 1623060781 d:\caro chess\tic_tac_toe\config.h
 
-1623077674 source:d:\caro chess\tic_tac_toe\engine.cpp
+1623158666 source:d:\caro chess\tic_tac_toe\engine.cpp
 	"Engine.h"
 	"Config.h"
 	<iostream>
 
-1623066401 d:\caro chess\tic_tac_toe\engine.h
+1623158531 d:\caro chess\tic_tac_toe\engine.h
 	<SDL.h>
 	<SDL_image.h>
 	<iostream>
 	<string>
 	"LTexture.h"
 	"Interface.h"
+	"Player1.h"
 
-1623066424 d:\caro chess\tic_tac_toe\interface.h
+1623155534 d:\caro chess\tic_tac_toe\interface.h
 	<SDL.h>
 	<SDL_image.h>
 	<string>
 	"LTexture.h"
 
-1623065002 source:d:\caro chess\tic_tac_toe\interface.cpp
+1623158666 source:d:\caro chess\tic_tac_toe\interface.cpp
 	"Interface.h"
 	"Config.h"
 	<SDL.h>
@@ -43,11 +44,11 @@
 
 1623063791 D
 
-1623066394 source:d:\caro chess\tic_tac_toe\player1.cpp
+1623153355 source:d:\caro chess\tic_tac_toe\player1.cpp
 	"Player1.h"
 	<iostream>
 
-1623066394 d:\caro chess\tic_tac_toe\player1.h
+1623154124 d:\caro chess\tic_tac_toe\player1.h
 	"Config.h"
 	"Interface.h"
 	<SDL.h>

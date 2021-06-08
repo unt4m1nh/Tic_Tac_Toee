@@ -9,12 +9,14 @@
 
 class Player1 {
     public:
+        Player1(SDL_Renderer* &gRenderer);
+         ~Player1();
 
         void input(SDL_Event& e);
         char chess;
 
     private:
-
+        Interface* interface;
 
 };
 

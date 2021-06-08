@@ -8,6 +8,7 @@
 
 #include"LTexture.h"
 #include"Interface.h"
+#include"Player1.h"
 
 using namespace std;
 
@@ -28,7 +29,9 @@ class Engine{
         bool initInterface(SDL_Renderer* &gRenderer);
 
         //input functions
-        void player1_input(SDL_Event& e);
+        void player_input(SDL_Event& e);
+
+        int state = 0;
 
     private:
         SDL_Window* gWindow;

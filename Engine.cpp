@@ -73,7 +73,8 @@ bool Engine::initGame()
     return true;
 }
 
-void Engine::player1_input(SDL_Event& e)
+
+void Engine::player_input(SDL_Event& e)
 {
     bool inside_box[3][3] = {{true,true,true},
                              {true,true,true},
@@ -81,31 +82,114 @@ void Engine::player1_input(SDL_Event& e)
 
     while( SDL_PollEvent( &e ) != 0 )
     {
-        if( e.type == SDL_MOUSEMOTION || e.type == SDL_MOUSEBUTTONDOWN || e.type == SDL_MOUSEBUTTONUP )
-        {
-            //Get mouse position
-            int x, y;
-            SDL_GetMouseState( &x, &y );
-            for(int i = 0; i < 3; i++)
+            if( e.type == SDL_MOUSEMOTION || e.type == SDL_MOUSEBUTTONDOWN || e.type == SDL_MOUSEBUTTONUP )
             {
-                for(int j = 0; j < 3; j++)
+                //Get mouse position
+                int x, y;
+                SDL_GetMouseState( &x, &y );
+                if(x < 0 || x > CHESS_BOX_WIDTH || y < 0 || y > CHESS_BOX_HEIGHT)
                 {
-                    if(x < i || x > CHESS_BOX_WIDTH*(i+1) || y < j || y > CHESS_BOX_HEIGHT*(j+1))
-                    {
-                        inside_box[i][j] = false;
-                    }
-                    if(inside_box[i][j] && this->interface->game_board[i][j] == 0)
-                    {
-                        if (e.type == SDL_MOUSEBUTTONDOWN )
-                        {
-                           this->interface->game_board[i][j] = 1;
-                        }
-                    }
+                    inside_box[0][0] = false;
+                }
+                if(inside_box[0][0] && this->interface->game_board[0][0] == 2)
+                {
+                            if (e.type == SDL_MOUSEBUTTONDOWN )
+                            {
+                               this->interface->game_board[0][0] = state % 2;
+                            }
+                }
+                if(x < 0 || x > CHESS_BOX_WIDTH || y < CHESS_BOX_HEIGHT || y > CHESS_BOX_HEIGHT * 2)
+                {
+                    inside_box[0][1] = false;
+                }
+                if(inside_box[0][1] && this->interface->game_board[0][1] == 2)
+                {
+                            if (e.type == SDL_MOUSEBUTTONDOWN )
+                            {
+                               this->interface->game_board[0][1] = state % 2;
+                            }
+                }
+                if(x < 0 || x > CHESS_BOX_WIDTH || y < CHESS_BOX_HEIGHT * 2 || y > CHESS_BOX_HEIGHT * 3)
+                {
+                    inside_box[0][2] = false;
+                }
+                if(inside_box[0][2] && this->interface->game_board[0][2] == 2)
+                {
+                            if (e.type == SDL_MOUSEBUTTONDOWN )
+                            {
+                               this->interface->game_board[0][2] = state % 2;
+                            }
+                }
+                if(x < CHESS_BOX_WIDTH || x > CHESS_BOX_WIDTH * 2 || y < 0 || y > CHESS_BOX_HEIGHT)
+                {
+                    inside_box[1][0] = false;
+                }
+                if(inside_box[1][0] && this->interface->game_board[1][0] == 2)
+                {
+                            if (e.type == SDL_MOUSEBUTTONDOWN )
+                            {
+                               this->interface->game_board[1][0] = state % 2;
+                            }
+                }
+                if(x < CHESS_BOX_WIDTH || x > CHESS_BOX_WIDTH * 2 || y < CHESS_BOX_HEIGHT || y > CHESS_BOX_HEIGHT * 2)
+                {
+                    inside_box[1][1] = false;
+                }
+                if(inside_box[1][1] && this->interface->game_board[1][1] == 2)
+                {
+                            if (e.type == SDL_MOUSEBUTTONDOWN )
+                            {
+                               this->interface->game_board[1][1] = state % 2;
+                            }
+                }
+                if(x < CHESS_BOX_WIDTH || x > CHESS_BOX_WIDTH * 2 || y < CHESS_BOX_HEIGHT * 2 || y > CHESS_BOX_HEIGHT * 3)
+                {
+                    inside_box[1][2] = false;
+                }
+                if(inside_box[1][2] && this->interface->game_board[1][2] == 2)
+                {
+                            if (e.type == SDL_MOUSEBUTTONDOWN )
+                            {
+                               this->interface->game_board[1][2] = state % 2;
+                            }
+                }
+                if(x < CHESS_BOX_WIDTH * 2 || x > CHESS_BOX_WIDTH * 3 || y < 0 || y > CHESS_BOX_HEIGHT)
+                {
+                    inside_box[2][0] = false;
+                }
+                if(inside_box[2][0] && this->interface->game_board[2][0] == 2)
+                {
+                            if (e.type == SDL_MOUSEBUTTONDOWN )
+                            {
+                               this->interface->game_board[2][0] = state % 2;
+                            }
+                }
+                if(x < CHESS_BOX_WIDTH * 2 || x > CHESS_BOX_WIDTH * 3 || y < CHESS_BOX_HEIGHT || y > CHESS_BOX_HEIGHT * 2)
+                {
+                    inside_box[2][1] = false;
+                }
+                if(inside_box[2][1] && this->interface->game_board[2][1] == 2)
+                {
+                            if (e.type == SDL_MOUSEBUTTONDOWN )
+                            {
+                               this->interface->game_board[2][1] = state % 2;
+                            }
+                }
+                if(x < CHESS_BOX_WIDTH * 2 || x > CHESS_BOX_WIDTH * 3 || y < CHESS_BOX_HEIGHT * 2 || y > CHESS_BOX_HEIGHT * 3)
+                {
+                    inside_box[2][2] = false;
+                }
+                if(inside_box[2][2] && this->interface->game_board[2][2] == 2)
+                {
+                            if (e.type == SDL_MOUSEBUTTONDOWN )
+                            {
+                               this->interface->game_board[2][2] = state % 2;
+                            }
                 }
             }
         }
-    }
 }
+
 
 
 void Engine::two_player()
@@ -129,10 +213,11 @@ bool Engine::run()
             {
                 quit = true;
             }
-            this->player1_input(e);
+            this->player_input(e);
         }
         this->interface->renderChessBoard(this->gRenderer);
-
+        this->state+=1;
+        cout << this->state << endl;
         SDL_RenderPresent(gRenderer);
 
     }
