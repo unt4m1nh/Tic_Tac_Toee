@@ -82,7 +82,6 @@ void Engine::player_input(SDL_Event& e)
 
     while( SDL_PollEvent( &e ) != 0 )
     {
-            cout<<state;
             if( e.type == SDL_MOUSEMOTION || e.type == SDL_MOUSEBUTTONDOWN || e.type == SDL_MOUSEBUTTONUP )
             {
                 //Get mouse position
