@@ -56,19 +56,18 @@
 
 1623063634 
 
-1623232967 source:c:\users\mdmt3\documents\tic_tac_toee\engine.cpp
+1623031741 source:c:\users\mdmt3\documents\tic_tac_toee\engine.cpp
 	"Engine.h"
 	"Config.h"
 	<iostream>
 
-1623208018 c:\users\mdmt3\documents\tic_tac_toee\engine.h
+1623031741 c:\users\mdmt3\documents\tic_tac_toee\engine.h
 	<SDL.h>
 	<SDL_image.h>
 	<iostream>
 	<string>
 	"LTexture.h"
 	"Interface.h"
-	"Player1.h"
 
 1608572888 c:\users\mdmt3\onedrive\documents\sdl setup for codeblock\sdl2-devel-2.0.14-mingw.tar\sdl2-2.0.14\x86_64-w64-mingw32\include\sdl2\sdl.h
 	"SDL_main.h"
@@ -450,15 +449,15 @@
 	<SDL_image.h>
 	<string>
 
-1623160146 c:\users\mdmt3\documents\tic_tac_toee\interface.h
+1623031741 c:\users\mdmt3\documents\tic_tac_toee\interface.h
 	<SDL.h>
 	<SDL_image.h>
 	<string>
 	"LTexture.h"
 
-1623121383 c:\users\mdmt3\documents\tic_tac_toee\config.h
+1623031741 c:\users\mdmt3\documents\tic_tac_toee\config.h
 
-1623202889 source:c:\users\mdmt3\documents\tic_tac_toee\interface.cpp
+1623031741 source:c:\users\mdmt3\documents\tic_tac_toee\interface.cpp
 	"Interface.h"
 	"Config.h"
 	<SDL.h>
@@ -475,10 +474,4 @@
 	"Engine.h"
 
 1623031741 2d141b4e6868cfa2a4fb3ea3596fab7a33bea
-
-1623160146 c:\users\mdmt3\documents\tic_tac_toee\player1.h
-	"Config.h"
-	"Interface.h"
-	<SDL.h>
-	<iostream>
 
