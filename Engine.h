@@ -21,7 +21,7 @@ class Engine{
         bool run();
         void two_player();
         void vs_computer();
-        void check_winner();
+        int check_winner();
 
         // init functions
         bool initWindowAndRender();
@@ -30,8 +30,6 @@ class Engine{
 
         //input functions
         void player_input(SDL_Event& e);
-        bool is_clicked();
-
         int state = 0;
 
     private:

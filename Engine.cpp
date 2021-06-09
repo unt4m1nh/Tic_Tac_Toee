@@ -82,8 +82,6 @@ void Engine::player_input(SDL_Event& e)
 
     while( SDL_PollEvent( &e ) != 0 )
     {
-
-            state+=1;
             cout<<state;
             if( e.type == SDL_MOUSEMOTION || e.type == SDL_MOUSEBUTTONDOWN || e.type == SDL_MOUSEBUTTONUP )
             {
@@ -201,19 +199,28 @@ void Engine::player_input(SDL_Event& e)
             }
         }
 }
-/*
-bool Engine::is_clicked()
+
+int Engine::check_winner()
 {
-
-    this->state += 1;
-    return
+    int game_over = 2;
+    int row1 = this->interface->game_board[0][0] + this->interface->game_board[0][1] + this->interface->game_board[0][2];
+    int row2 = this->interface->game_board[1][0] + this->interface->game_board[1][1] + this->interface->game_board[1][2];
+    int row3 = this->interface->game_board[2][0] + this->interface->game_board[2][1] + this->interface->game_board[2][2];
+    int col1 = this->interface->game_board[0][0] + this->interface->game_board[1][0] + this->interface->game_board[2][0];
+    int col2 = this->interface->game_board[0][1] + this->interface->game_board[1][1] + this->interface->game_board[2][1];
+    int col3 = this->interface->game_board[0][2] + this->interface->game_board[1][2] + this->interface->game_board[2][2];
+    int dig_left_right = this->interface->game_board[0][0] + this->interface->game_board[1][1] + this->interface->game_board[2][2];
+    int dig_right_left = this->interface->game_board[0][2] + this->interface->game_board[1][1] + this->interface->game_board[2][0];
+    if(row1 == 0 || row2 == 0 || row3 == 0 || col1 == 0 || col2 == 0 || col3 == 0 || dig_left_right == 0 || dig_right_left == 0)
+    {
+        game_over = 0;
+    }
+    else if(row1 == 3 || row2 == 3 || row3 == 3 || col1 == 3 || col2 == 3 || col3 == 3 || dig_left_right == 3 || dig_right_left == 3)
+    {
+        game_over = 1;
+    }
+    return game_over;
 }
-*/
-void Engine::two_player()
-{
-
-}
-
 
 
 bool Engine::run()
@@ -232,12 +239,16 @@ bool Engine::run()
             }
             this->player_input(e);
         }
-
         this->interface->renderChessBoard(this->gRenderer);
+        if(this->check_winner()==0)
+        {
+            this->interface->renderGameOver(this->gRenderer);
+
+            SDL_Delay(50000);
+        }
         SDL_RenderPresent(gRenderer);
 
     }
-    cout << this->state << endl;
     this->close();
 
     return true;
