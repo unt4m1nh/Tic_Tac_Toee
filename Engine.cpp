@@ -82,6 +82,9 @@ void Engine::player_input(SDL_Event& e)
 
     while( SDL_PollEvent( &e ) != 0 )
     {
+
+            state+=1;
+            cout<<state;
             if( e.type == SDL_MOUSEMOTION || e.type == SDL_MOUSEBUTTONDOWN || e.type == SDL_MOUSEBUTTONUP )
             {
                 //Get mouse position
@@ -216,8 +219,6 @@ bool Engine::run()
             this->player_input(e);
         }
         this->interface->renderChessBoard(this->gRenderer);
-        this->state+=1;
-        cout << this->state << endl;
         SDL_RenderPresent(gRenderer);
 
     }

@@ -32,7 +32,7 @@ bool Interface::loadMedia(SDL_Renderer* &gRenderer)
     {
         if (this->ChessBoxTexture[i].get_mTexture() == NULL) {
                 success = false;
-                printf( "Failed to load playgorund texture image %d!\n" );
+                printf( "Failed to load playground texture image %d!\n" );
         }
     }
     return success;
