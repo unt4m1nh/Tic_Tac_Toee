@@ -33,8 +33,8 @@ class Interface
                                          "./images/emty_cb.png"};
         LTexture GameOverTextureP1;
         LTexture GameOverTextureP2;
-        string GameOverTexturePathP1 = "./images/background-scene---player-1-win.png";
-        string GameOverTexturePathP2 = "./images/background-scene---player-2-win.png";
+        string GameOverTexturePathP1 = "./images/player1_win.png";
+        string GameOverTexturePathP2 = "./images/player2_win.png";
 };
 
 

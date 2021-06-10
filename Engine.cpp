@@ -199,27 +199,6 @@ void Engine::player_input(SDL_Event& e)
         }
 }
 
-/*int Engine::check_winner()
-{
-    int game_over = 2;
-    int row1 = this->interface->game_board[0][0] + this->interface->game_board[0][1] + this->interface->game_board[0][2];
-    int row2 = this->interface->game_board[1][0] + this->interface->game_board[1][1] + this->interface->game_board[1][2];
-    int row3 = this->interface->game_board[2][0] + this->interface->game_board[2][1] + this->interface->game_board[2][2];
-    int col1 = this->interface->game_board[0][0] + this->interface->game_board[1][0] + this->interface->game_board[2][0];
-    int col2 = this->interface->game_board[0][1] + this->interface->game_board[1][1] + this->interface->game_board[2][1];
-    int col3 = this->interface->game_board[0][2] + this->interface->game_board[1][2] + this->interface->game_board[2][2];
-    int dig_left_right = this->interface->game_board[0][0] + this->interface->game_board[1][1] + this->interface->game_board[2][2];
-    int dig_right_left = this->interface->game_board[0][2] + this->interface->game_board[1][1] + this->interface->game_board[2][0];
-    if(row1 == 0 || row2 == 0 || row3 == 0 || col1 == 0 || col2 == 0 || col3 == 0 || dig_left_right == 0 || dig_right_left == 0)
-    {
-        game_over = 0;
-    }
-    else if(row1 == 3 || row2 == 3 || row3 == 3 || col1 == 3 || col2 == 3 || col3 == 3 || dig_left_right == 3 || dig_right_left == 3)
-    {
-        game_over = 1;
-    }
-    return game_over;
-}*/
 bool Engine:: check_winner(int player){
     int row_count;
     int col_count=0;
@@ -261,12 +240,10 @@ bool Engine::run()
 
         if(this->check_winner(player1)==true)
         {
-            SDL_Delay(1000);
             this->interface->renderGameOverP1(this->gRenderer);
             SDL_Delay(50000);
         }
         if(this->check_winner(player2)==true){
-            SDL_Delay(1000);
             this->interface->renderGameOverP2(this->gRenderer);
             SDL_Delay(50000);
         }
