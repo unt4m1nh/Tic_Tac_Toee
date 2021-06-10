@@ -18,7 +18,8 @@ Interface::~Interface()
     {
         this->ChessBoxTexture[i].free();
     }
-    this->GameOverTexture.free();
+    this->GameOverTextureP1.free();
+    this->GameOverTextureP2.free();
 }
 
 bool Interface::loadMedia(SDL_Renderer* &gRenderer)
@@ -36,8 +37,9 @@ bool Interface::loadMedia(SDL_Renderer* &gRenderer)
                 printf( "Failed to load playgorund texture image %d!\n" );
         }
     }
-    this->GameOverTexture.loadFromFile(this->GameOverTexturePath, gRenderer);
-    if(this->GameOverTexture.get_mTexture() == NULL)
+    this->GameOverTextureP1.loadFromFile(this->GameOverTexturePathP1, gRenderer);
+    this->GameOverTextureP2.loadFromFile(this->GameOverTexturePathP2, gRenderer);
+    if(this->GameOverTextureP1.get_mTexture() == NULL||this->GameOverTextureP2.get_mTexture() == NULL)
     {
         success = false;
         printf( "Failed to load playground texture image %d!\n" );
@@ -60,11 +62,16 @@ void Interface::renderChessBoard(SDL_Renderer* &gRenderer)
     return;
 }
 
-void Interface::renderGameOver(SDL_Renderer* &gRenderer)
+void Interface::renderGameOverP1(SDL_Renderer* &gRenderer)
 {
-    this->GameOverTexture.render(gRenderer,0,0);
+    this->GameOverTextureP1.render(gRenderer,0,0);
 
     SDL_RenderPresent(gRenderer);
 
+    return;
+}
+void Interface::renderGameOverP2(SDL_Renderer* &gRenderer){
+    this->GameOverTextureP2.render(gRenderer,0,0);
+    SDL_RenderPresent(gRenderer);
     return;
 }

@@ -258,10 +258,16 @@ bool Engine::run()
             this->player_input(e);
         }
         this->interface->renderChessBoard(this->gRenderer);
-        if(this->check_winner(player1)==true||this->check_winner(player2)==true)
-        {
-            this->interface->renderGameOver(this->gRenderer);
 
+        if(this->check_winner(player1)==true)
+        {
+            SDL_Delay(1000);
+            this->interface->renderGameOverP1(this->gRenderer);
+            SDL_Delay(50000);
+        }
+        if(this->check_winner(player2)==true){
+            SDL_Delay(1000);
+            this->interface->renderGameOverP2(this->gRenderer);
             SDL_Delay(50000);
         }
         SDL_RenderPresent(gRenderer);

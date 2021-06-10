@@ -45,7 +45,6 @@
 		<Unit filename="Interface.h" />
 		<Unit filename="LTexrure.cpp" />
 		<Unit filename="LTexture.h" />
-		<Unit filename="Player1.h" />
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
