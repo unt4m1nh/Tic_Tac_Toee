@@ -6,7 +6,8 @@
 #include<string>
 
 #include "LTexture.h"
-
+#define player1 0
+#define player2 1
 
 using namespace std;
 

@@ -3,7 +3,7 @@
 
 
 #include<iostream>
-
+using namespace std;
 bool Engine::initWindowAndRender() {
 
     // Initialization flag
@@ -199,7 +199,7 @@ void Engine::player_input(SDL_Event& e)
         }
 }
 
-int Engine::check_winner()
+/*int Engine::check_winner()
 {
     int game_over = 2;
     int row1 = this->interface->game_board[0][0] + this->interface->game_board[0][1] + this->interface->game_board[0][2];
@@ -219,13 +219,32 @@ int Engine::check_winner()
         game_over = 1;
     }
     return game_over;
+}*/
+bool Engine:: check_winner(int player){
+    int row_count;
+    int col_count=0;
+    int dig_count1=0;
+    int dig_count2=0;
+    for(int i=0;i<3;i++){
+            row_count=0;
+            col_count=0;
+        for(int j=0;j<3;j++){
+            if(this->interface->game_board[i][j]==player) row_count++;
+            if(this->interface->game_board[j][i]==player) col_count++;
+        }
+            if(row_count==3||col_count==3) return true;
+            //r->l
+            if(this->interface->game_board[i][i]==player) dig_count1++;
+            //l->r
+            if(this->interface->game_board[i][2-i]==player) dig_count2++;
+    }
+    //check
+    if (dig_count1==3||dig_count2==3) return true;
+    else return false;
 }
-
-
 bool Engine::run()
 {
     bool quit = false;
-
     SDL_Event e;
     while(!quit)
     {
@@ -239,14 +258,13 @@ bool Engine::run()
             this->player_input(e);
         }
         this->interface->renderChessBoard(this->gRenderer);
-        if(this->check_winner()==0)
+        if(this->check_winner(player1)==true||this->check_winner(player2)==true)
         {
             this->interface->renderGameOver(this->gRenderer);
 
             SDL_Delay(50000);
         }
         SDL_RenderPresent(gRenderer);
-
     }
     this->close();
 
