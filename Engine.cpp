@@ -247,6 +247,11 @@ bool Engine::run()
             this->interface->renderGameOverP2(this->gRenderer);
             SDL_Delay(50000);
         }
+        if(this->check_winner(player1)==false && this->check_winner(player2)==false && this->state == 9)
+        {
+            this->interface->renderTiedGame(this->gRenderer);
+            SDL_Delay(50000);
+        }
         SDL_RenderPresent(gRenderer);
     }
     this->close();
