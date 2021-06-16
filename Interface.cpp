@@ -44,11 +44,6 @@ bool Interface::loadMedia(SDL_Renderer* &gRenderer)
         success = false;
         printf( "Failed to load playground texture image %d!\n" );
     }
-    this->TiedTexture.loadFromFile(this->TiedTexturePath, gRenderer);
-    if(this->TiedTexture.get_mTexture() == NULL) {
-        success = false;
-        printf( "Failed to load playgorund texture image %d!\n" );
-    }
     return success;
 }
 
@@ -77,13 +72,6 @@ void Interface::renderGameOverP1(SDL_Renderer* &gRenderer)
 }
 void Interface::renderGameOverP2(SDL_Renderer* &gRenderer){
     this->GameOverTextureP2.render(gRenderer,0,0);
-    SDL_RenderPresent(gRenderer);
-    return;
-}
-
-void Interface::renderTiedGame(SDL_Renderer* &gRenderer)
-{
-    this->TiedTexture.render(gRenderer,0,0);
     SDL_RenderPresent(gRenderer);
     return;
 }
