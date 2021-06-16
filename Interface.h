@@ -27,6 +27,7 @@ class Interface
         void renderChessBoard(SDL_Renderer* &gRenderer);
         void renderGameOverP1(SDL_Renderer* &gRenderer);
         void renderGameOverP2(SDL_Renderer* &gRenderer);
+        void renderTiedGame(SDL_Renderer* &gRenderer);
         bool loadMedia(SDL_Renderer* &gRenderer);
 
          // game texture declaration
@@ -36,8 +37,10 @@ class Interface
                                          "./images/emty_cb.png"};
         LTexture GameOverTextureP1;
         LTexture GameOverTextureP2;
-        string GameOverTexturePathP1 = "./images/background-scene---player-1-win.png";
-        string GameOverTexturePathP2 = "./images/background-scene---player-2-win.png";
+        LTexture TiedTexture;
+        string GameOverTexturePathP1 = "./images/player1_win.png";
+        string GameOverTexturePathP2 = "./images/player2_win.png";
+        string TiedTexturePath = "./images/tied_game.png";
 };
 
 
