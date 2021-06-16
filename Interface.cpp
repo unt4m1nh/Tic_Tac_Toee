@@ -14,7 +14,7 @@ Interface::Interface(SDL_Renderer* &gRenderer)
 
 Interface::~Interface()
 {
-    for(int i = 0; i < 3; i++)
+    for(int i = 0; i < N; i++)
     {
         this->ChessBoxTexture[i].free();
     }
@@ -34,7 +34,7 @@ bool Interface::loadMedia(SDL_Renderer* &gRenderer)
     {
         if (this->ChessBoxTexture[i].get_mTexture() == NULL) {
                 success = false;
-                printf( "Failed to load playgorund texture image %d!\n" );
+                printf( "Failed to load playground texture image %d!\n" );
         }
     }
     this->GameOverTextureP1.loadFromFile(this->GameOverTexturePathP1, gRenderer);
@@ -49,12 +49,12 @@ bool Interface::loadMedia(SDL_Renderer* &gRenderer)
 
 void Interface::renderChessBoard(SDL_Renderer* &gRenderer)
 {
-    for(int i = 0; i < 3; i++)
+    for(int i = 0; i < N; i++)
     {
-        for(int j = 0; j < 3; j++)
+        for(int j = 0; j < N; j++)
         {
               int states = game_board[i][j];
-              this->ChessBoxTexture[states].render(gRenderer,i*200,j*200);
+              this->ChessBoxTexture[states].render(gRenderer,i*120,j*120);
         }
     }
     SDL_RenderPresent(gRenderer);

@@ -4,7 +4,7 @@
 #include<SDL.h>
 #include<SDL_image.h>
 #include<string>
-
+#include "Config.h"
 #include "LTexture.h"
 #define player1 0
 #define player2 1
@@ -17,9 +17,12 @@ class Interface
         Interface(SDL_Renderer* &gRenderer);
         ~Interface();
 
-        int game_board[3][3] = {{2,2,2},
-                                {2,2,2},
-                                {2,2,2}};
+        int game_board[N][N] = {{2,2,2,2,2},
+                                {2,2,2,2,2},
+                                {2,2,2,2,2},
+                                {2,2,2,2,2},
+                                {2,2,2,2,2}};
+
 
         void renderChessBoard(SDL_Renderer* &gRenderer);
         void renderGameOverP1(SDL_Renderer* &gRenderer);

@@ -30,8 +30,9 @@ class Engine{
         bool initInterface(SDL_Renderer* &gRenderer);
 
         //input functions
-        void player_input(SDL_Event& e);
-        int state = 0;
+        void switch_player();
+        void player_input(int j, int i);
+        int state=0;
 
     private:
         SDL_Window* gWindow;
