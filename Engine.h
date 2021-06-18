@@ -32,7 +32,7 @@ class Engine{
         //input functions
         void switch_player();
         void player_input(int j, int i);
-        int state=0;
+        int state = -1;
 
     private:
         SDL_Window* gWindow;

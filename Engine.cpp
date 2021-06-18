@@ -74,38 +74,47 @@ bool Engine::initGame()
 }
 
 void Engine::switch_player(){
-    if (this->state==0) this->state=1;
-    else if (this->state==1) this->state=0;
+    if (this->state==-1) this->state=1;
+    else if (this->state==1) this->state=-1;
 }
 void Engine::player_input(int i, int j)
 {
-    if(this->interface->game_board[i][j]==2){
+    if(this->interface->game_board[i][j]==0){
         this->interface->game_board[i][j]=state;
         switch_player();
     }
 }
 
 bool Engine:: check_winner(int player){
-    int row_count;
-    int col_count=0;
-    int dig_count1=0;
-    int dig_count2=0;
-    for(int i=0;i<N;i++){
-            row_count=0;
-            col_count=0;
-        for(int j=0;j<N;j++){
-            if(this->interface->game_board[i][j]==player) row_count++;
-            if(this->interface->game_board[j][i]==player) col_count++;
-        }
-            if(row_count==3||col_count==3) return true;
-            //r->l
-            if(this->interface->game_board[i][i]==player) dig_count1++;
-            //l->r
-            if(this->interface->game_board[i][2-i]==player) dig_count2++;
+    bool over = false;
+    int row_count = -100;
+    int col_count = -100;
+    int dig_count_1 = -100;
+    int dig_count_2 = -100;
+    int max_sum = -100;
+
+    if(player == -1)
+    {
+        max_sum = -3;
     }
-    //check
-    if (dig_count1==3||dig_count2==3) return true;
-    else return false;
+    else if(player == 1)
+    {
+        max_sum = 3;
+    }
+    for(int i = 0; i < N; i++) {
+        for (int j = 0; j < N; j++) {
+                row_count = this->interface->game_board[i][j]+ this->interface->game_board[i+1][j] + this->interface->game_board[i+2][j];
+                col_count = this->interface->game_board[i][j] + this->interface->game_board[i][j+1] + this->interface->game_board[i][j+2];
+                dig_count_1 = this->interface->game_board[i][j]+ this->interface->game_board[i+1][j+1] + this->interface->game_board[i+2][j+2];
+                dig_count_2 = this->interface->game_board[i][j+2]+ this->interface->game_board[i+1][j+1]+ this->interface->game_board[i+2][j];
+                if(row_count == max_sum || col_count == max_sum || dig_count_1 == max_sum || dig_count_2 == max_sum)
+                {
+                    over = true;
+                    break;
+                }
+            }
+        }
+    return over;
 }
 bool Engine::run()
 {

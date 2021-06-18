@@ -6,7 +6,7 @@
 #include<string>
 #include "Config.h"
 #include "LTexture.h"
-#define player1 0
+#define player1 -1
 #define player2 1
 
 using namespace std;
@@ -17,11 +17,11 @@ class Interface
         Interface(SDL_Renderer* &gRenderer);
         ~Interface();
 
-        int game_board[N][N] = {{2,2,2,2,2},
-                                {2,2,2,2,2},
-                                {2,2,2,2,2},
-                                {2,2,2,2,2},
-                                {2,2,2,2,2}};
+        int game_board[N][N] = {{0,0,0,0,0},
+                                {0,0,0,0,0},
+                                {0,0,0,0,0},
+                                {0,0,0,0,0},
+                                {0,0,0,0,0}};
 
 
         void renderChessBoard(SDL_Renderer* &gRenderer);
@@ -32,8 +32,8 @@ class Interface
          // game texture declaration
         LTexture ChessBoxTexture[3];
         string ChessBoxTexturePath[3] = {"./images/x_cb.png",
-                                         "./images/o_cb.png",
-                                         "./images/emty_cb.png"};
+                                         "./images/emty_cb.png",
+                                         "./images/o_cb.png"};
         LTexture GameOverTextureP1;
         LTexture GameOverTextureP2;
         string GameOverTexturePathP1 = "./images/background-scene---player-1-win.png";
