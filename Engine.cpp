@@ -77,6 +77,7 @@ void Engine::switch_player(){
     if (this->state==-1) this->state=1;
     else if (this->state==1) this->state=-1;
 }
+
 void Engine::player_input(int i, int j)
 {
     if(this->interface->game_board[i][j]==0){
@@ -84,6 +85,7 @@ void Engine::player_input(int i, int j)
         switch_player();
     }
 }
+
 
 bool Engine:: check_winner(int player){
     bool over = false;
@@ -137,13 +139,16 @@ bool Engine::run()
 
         if(this->check_winner(player1)==true)
         {
-            SDL_Delay(1000);
             this->interface->renderGameOverP1(this->gRenderer);
             SDL_Delay(50000);
         }
         if(this->check_winner(player2)==true){
-            SDL_Delay(1000);
             this->interface->renderGameOverP2(this->gRenderer);
+            SDL_Delay(50000);
+        }
+        if(this->check_winner(player1)==false && this->check_winner(player2)==false && this->state == 9)
+        {
+            this->interface->renderTiedGame(this->gRenderer);
             SDL_Delay(50000);
         }
         SDL_RenderPresent(gRenderer);
