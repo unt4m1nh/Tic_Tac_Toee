@@ -33,6 +33,7 @@ class Engine{
         void switch_player();
         void player_input(int j, int i);
         int state = -1;
+        int move = 0;
 
     private:
         SDL_Window* gWindow;

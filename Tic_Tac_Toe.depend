@@ -17,7 +17,10 @@
 
 1623063791 D
 
-1623414753 source:d:\caro chess\tic_tac_toe\engine.cpp
+1623998874 source:d:\caro chess\tic_tac_toe\engine.cpp
+	"Engine.h"
+	"Config.h"
+	<iostream>
 
 1623414792 3f0b28325bc60c78f4fece2ff45b2321a069b
 	"Engine.h"
@@ -57,7 +60,12 @@
 	"Config.h"
 	"LTexture.h"
 
-1623414792 source:d:\caro chess\tic_tac_toe\interface.cpp
+1623998784 source:d:\caro chess\tic_tac_toe\interface.cpp
+	"Interface.h"
+	"Config.h"
+	<SDL.h>
+	<SDL_image.h>
+	<string>
 
 1623153355 source:d:\caro chess\tic_tac_toe\player1.cpp
 	"Player1.h"
