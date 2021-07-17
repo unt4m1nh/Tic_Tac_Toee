@@ -59,7 +59,7 @@ void Interface::renderChessBoard(SDL_Renderer* &gRenderer)
         for(int j = 0; j < N; j++)
         {
               int states = game_board[i][j];
-              this->ChessBoxTexture[states+1].render(gRenderer,i*120,j*120);
+              this->ChessBoxTexture[states].render(gRenderer,i*200,j*200);
         }
     }
     SDL_RenderPresent(gRenderer);

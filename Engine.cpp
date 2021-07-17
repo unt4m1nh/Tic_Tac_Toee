@@ -3,6 +3,7 @@
 
 
 #include<iostream>
+#include<time.h>
 using namespace std;
 bool Engine::initWindowAndRender() {
 
@@ -73,52 +74,87 @@ bool Engine::initGame()
     return true;
 }
 
+
 void Engine::switch_player(){
-    if (this->state==-1) this->state=1;
-    else if (this->state==1) this->state=-1;
+    if (this->state==1) this->state=2;
+    else if (this->state==2) this->state=1;
 }
+
+void Engine::random()
+{
+    srand(time(0));
+    this->cpu_move_x = rand() % 3;
+    this->cpu_move_y = rand() % 3;
+}
+
+bool Engine::check_move(int x, int y)
+{
+    if (this->interface->game_board[x][y] == 0)
+    {
+        return false;
+    }
+    return true;
+}
+
 
 void Engine::player_input(int i, int j)
 {
     if(this->interface->game_board[i][j]==0){
         this->interface->game_board[i][j]=state;
-        switch_player();
         move++;
     }
 }
 
+void Engine::moving(SDL_Event& e, int s)
+{
+    switch(s)
+    {
+       case 1:
+            if(e.type == SDL_MOUSEBUTTONDOWN)
+            {
+                    this->player_input(e.button.x/CHESS_BOX_WIDTH,e.button.y/CHESS_BOX_HEIGHT);
+                    if(move <= 8)
+                    {
+                        this->switch_player();
+                    }
+            }
+            break;
+       case 2:
+            do
+            {
+                this->random();
+            }
+            while(this->check_move(cpu_move_x,cpu_move_y));
+            this->interface->game_board[cpu_move_x][cpu_move_y] = this->state;
+            move++;
+            this->switch_player();
+            break;
+    }
+}
 
 bool Engine:: check_winner(int player){
-    bool over = false;
-    int row_count = -100;
-    int col_count = -100;
-    int dig_count_1 = -100;
-    int dig_count_2 = -100;
-    int max_sum = -100;
-
-    if(player == -1)
-    {
-        max_sum = -3;
-    }
-    else if(player == 1)
-    {
-        max_sum = 3;
-    }
-    for(int i = 0; i < N; i++) {
-        for (int j = 0; j < N; j++) {
-                row_count = this->interface->game_board[i][j]+ this->interface->game_board[i+1][j] + this->interface->game_board[i+2][j];
-                col_count = this->interface->game_board[i][j] + this->interface->game_board[i][j+1] + this->interface->game_board[i][j+2];
-                dig_count_1 = this->interface->game_board[i][j]+ this->interface->game_board[i+1][j+1] + this->interface->game_board[i+2][j+2];
-                dig_count_2 = this->interface->game_board[i][j+2]+ this->interface->game_board[i+1][j+1]+ this->interface->game_board[i+2][j];
-                if(row_count == max_sum || col_count == max_sum || dig_count_1 == max_sum || dig_count_2 == max_sum)
-                {
-                    over = true;
-                    break;
-                }
-            }
+    int row_count;
+    int col_count=0;
+    int dig_count1=0;
+    int dig_count2=0;
+    for(int i=0;i<3;i++){
+            row_count=0;
+            col_count=0;
+        for(int j=0;j<3;j++){
+            if(this->interface->game_board[i][j]==player) row_count++;
+            if(this->interface->game_board[j][i]==player) col_count++;
         }
-    return over;
+            if(row_count==3||col_count==3) return true;
+            //r->l
+            if(this->interface->game_board[i][i]==player) dig_count1++;
+            //l->r
+            if(this->interface->game_board[i][2-i]==player) dig_count2++;
+    }
+    //check
+    if (dig_count1==3||dig_count2==3) return true;
+    else return false;
 }
+
 bool Engine::run()
 {
     bool quit = false;
@@ -131,13 +167,10 @@ bool Engine::run()
                 case SDL_QUIT:
                     quit = true;
                     break;
-                case SDL_MOUSEBUTTONDOWN:
-                    this->player_input(e.button.x/CHESS_BOX_WIDTH,e.button.y/CHESS_BOX_HEIGHT);
-                    break;
             }
+            this->moving(e,this->state);
         }
         this->interface->renderChessBoard(this->gRenderer);
-
         if(this->check_winner(player1)==true)
         {
             this->interface->renderGameOverP1(this->gRenderer);
@@ -147,7 +180,7 @@ bool Engine::run()
             this->interface->renderGameOverP2(this->gRenderer);
             SDL_Delay(50000);
         }
-        if(this->check_winner(player1)==false && this->check_winner(player2)==false && move == 25)
+        if(this->check_winner(player1)==false && this->check_winner(player2)==false && move == 9)
         {
             this->interface->renderTiedGame(this->gRenderer);
             SDL_Delay(50000);

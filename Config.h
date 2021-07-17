@@ -3,10 +3,9 @@
 
 const int SCREEN_WIDTH = 800;
 const int SCREEN_HEIGHT = 600;
-#define N 5
-
-const int CHESS_BOX_WIDTH = 120;
-const int CHESS_BOX_HEIGHT =120;
+#define N 3
+const int CHESS_BOX_WIDTH = 200;
+const int CHESS_BOX_HEIGHT = 200;
 
 
 #endif // CONFIG_H
