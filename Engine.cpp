@@ -4,6 +4,7 @@
 
 #include<iostream>
 #include<time.h>
+#include<vector>
 using namespace std;
 bool Engine::initWindowAndRender() {
 
@@ -80,28 +81,25 @@ void Engine::switch_player(){
     else if (this->state==2) this->state=1;
 }
 
-void Engine::random()
-{
-    srand(time(0));
-    this->cpu_move_x = rand() % 3;
-    this->cpu_move_y = rand() % 3;
-}
 
-bool Engine::check_move(int x, int y)
+void Engine::available_spot()
 {
-    if (this->interface->game_board[x][y] == 0)
-    {
-        return false;
+    for(int i = 0; i < N; i++) {
+        for(int j = 0; j < N; j++)
+        {
+            if(this->interface->game_board[i][j]==0)
+            {
+                this->available.push_back({i,j});
+            }
+        }
     }
-    return true;
 }
-
 
 void Engine::player_input(int i, int j)
 {
     if(this->interface->game_board[i][j]==0){
         this->interface->game_board[i][j]=state;
-        move++;
+        turns++;
     }
 }
 
@@ -113,20 +111,15 @@ void Engine::moving(SDL_Event& e, int s)
             if(e.type == SDL_MOUSEBUTTONDOWN)
             {
                     this->player_input(e.button.x/CHESS_BOX_WIDTH,e.button.y/CHESS_BOX_HEIGHT);
-                    if(move <= 8)
-                    {
-                        this->switch_player();
-                    }
+                    this->switch_player();
+                    this->available.clear();
             }
             break;
        case 2:
-            do
-            {
-                this->random();
-            }
-            while(this->check_move(cpu_move_x,cpu_move_y));
-            this->interface->game_board[cpu_move_x][cpu_move_y] = this->state;
-            move++;
+            srand(time(0));
+            int ai = rand() % available.size();
+            this->interface->game_board[this->available[ai].x][this->available[ai].y] = this->state;
+            turns++;
             this->switch_player();
             break;
     }
@@ -170,6 +163,7 @@ bool Engine::run()
             }
             this->moving(e,this->state);
         }
+        this->available_spot();
         this->interface->renderChessBoard(this->gRenderer);
         if(this->check_winner(player1)==true)
         {
@@ -180,7 +174,7 @@ bool Engine::run()
             this->interface->renderGameOverP2(this->gRenderer);
             SDL_Delay(50000);
         }
-        if(this->check_winner(player1)==false && this->check_winner(player2)==false && move == 9)
+        if(this->check_winner(player1)==false && this->check_winner(player2)==false && turns == 9)
         {
             this->interface->renderTiedGame(this->gRenderer);
             SDL_Delay(50000);

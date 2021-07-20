@@ -5,6 +5,7 @@
 #include <SDL_image.h>
 #include <iostream>
 #include <string>
+#include <vector>
 
 #include"LTexture.h"
 #include"Interface.h"
@@ -32,13 +33,16 @@ class Engine{
         //input functions
         void switch_player();
         void player_input(int j, int i);
-        void random();
-        bool check_move(int x, int y);
+        void available_spot();
         void moving(SDL_Event& e,int s);
         int state = 1;
-        int move = 0;
-        int cpu_move_x;
-        int cpu_move_y;
+        int turns = 0;
+        struct pos
+        {
+            int x;
+            int y;
+        };
+        vector<pos> available;
 
     private:
         SDL_Window* gWindow;
